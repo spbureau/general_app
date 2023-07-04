@@ -30,23 +30,29 @@ class Whatsapp extends StatelessWidget {
                 size: 50.0,
                 color: Colors.deepOrange,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Simon Peters",
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                  Text("Hello, good morning! I sent...",
-                      style: TextStyle(fontStyle: FontStyle.italic))
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Simon Peters",
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                    Text("Hello, good morning! I sent...",
+                        style: TextStyle(fontStyle: FontStyle.italic))
+                  ],
+                ),
               ),
-              SizedBox(
-                width: 190.0,
-              ),
-              Text(
-                "Yesterday",
-                style: TextStyle(fontStyle: FontStyle.italic),
+
+              // SizedBox(
+              //   width: 190.0,
+              // ),
+              Padding(
+                padding: EdgeInsets.only(right: 15.0),
+                child: Text(
+                  "Yesterday",
+                  style: TextStyle(fontStyle: FontStyle.normal),
+                ),
               ), //
             ],
           ), // First Row Ends
@@ -76,13 +82,16 @@ class Whatsapp extends StatelessWidget {
               ),
               Text(
                 "18:45 pm",
-                style: TextStyle(fontStyle: FontStyle.italic),
+                style: TextStyle(fontStyle: FontStyle.normal),
               ) //
             ],
           ), // First Row Ends
         ],
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.edit),
+      ),
       // Bottom Navaigation Bar
       bottomNavigationBar: BottomNavigationBar(
         //backgroundColor: Colors.red,
