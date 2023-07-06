@@ -25,6 +25,7 @@ class _MyTextFieldState extends State<MyTextField> {
       body: Column(
         children: [
           Container(
+            color: Colors.grey,
             //color: Colors.blue,
             child: TextField(
               decoration: const InputDecoration(
