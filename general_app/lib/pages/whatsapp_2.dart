@@ -31,7 +31,9 @@ class Whatsapp2 extends StatelessWidget {
             title: Text(users[index].name),
             subtitle: Text(users[index].lastText),
             trailing: Text(users[index].time),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/chatBox');
+            },
           );
         },
       ), // ListViewBuilder
