@@ -10,6 +10,9 @@ class Person {
   Person(this.displayImage, this.name, this.lastText, this.time);
 }
 
+// Index for opening custom chatbox
+int chatIndex = 0;
+
 List<Person> users = [
   Person(
       const Icon(

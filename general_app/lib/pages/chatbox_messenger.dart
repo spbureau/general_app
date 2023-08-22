@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:general_app/pages/users.dart';
 // import 'package:general_app/pages/users.dart';
 
 TextEditingController messageController = TextEditingController();
+
 List<String> messages = [
   "Hello, good day!",
   "How are you?",
 ];
+// used to set satate upon additions
+List<String> allMessages = [];
 
 class ChatBox extends StatefulWidget {
   const ChatBox({super.key});
@@ -18,13 +22,27 @@ class _ChatBoxState extends State<ChatBox> {
   // get chatIndex => null;
 
   // get index => null;
+  @override
+  void initState() {
+    // ToDO: implement initState
+    allMessages = messages;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         // leading: const Icon(Icons.person),
-        title: const Text("Username"),
+        title: Row(
+          children: [
+            users[chatIndex].displayImage,
+            const SizedBox(
+              width: 10,
+            ),
+            Text(users[chatIndex].name),
+          ],
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -97,10 +115,12 @@ class _ChatBoxState extends State<ChatBox> {
                     onPressed: () {
                       setState(() {
                         messages.add(messageController.text);
+                        allMessages = messages;
+                        // to clear textfield when message is sent
                         messageController.clear();
-                        debugPrint("Message sent, box cleared");
-                        debugPrint(
-                            "Current no. of messages is ${messages.length}");
+                        // debugPrint("Message sent, box cleared");
+                        // debugPrint(
+                        //     "Current no. of messages is ${allMessages.length}");
                       });
                     },
                     icon: const Icon(
@@ -120,7 +140,6 @@ class _ChatBoxState extends State<ChatBox> {
 
 class MessagesBox extends StatefulWidget {
   const MessagesBox({super.key});
-
   @override
   State<MessagesBox> createState() => _MessagesBoxState();
 }
@@ -134,29 +153,46 @@ class _MessagesBoxState extends State<MessagesBox> {
   // }
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: messages.length, // from contacts class
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(messages[index]),
-            subtitle: Text("Msg $index"),
-            trailing: IconButton(
-                onPressed: () {
-                  setState(() {
-                    debugPrint(
-                        "Message to be deleted @index $index: ${messages[index]}");
-                    // debugPrint("message index is: $index");
-                    messages.remove(messages[index]);
-                    debugPrint("Message removed from list");
-                    debugPrint(
-                        "Number of messages remaining is ${messages.length}");
-                  });
-                },
-                icon: const Icon(Icons.delete)),
-          );
-        },
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: allMessages.length, // from contacts class
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(allMessages[index]),
+                subtitle: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text("msg $index",
+                      style: const TextStyle(
+                          fontStyle: FontStyle.italic, fontSize: 9)),
+                ),
+                trailing: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        debugPrint(
+                            "Message to be deleted @index $index: ${allMessages[index]}");
+                        // debugPrint("message index is: $index");
+                        messages.remove(allMessages[index]);
+                        debugPrint("Message removed from list");
+                        debugPrint(
+                            "Number of messages remaining is ${allMessages.length}");
+                      });
+                    },
+                    icon: const Icon(Icons.delete)),
+              );
+            },
+          ),
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        const Center(
+            child: Text(
+          "...",
+          style: TextStyle(color: Colors.grey),
+        ))
+      ],
     );
   }
 }

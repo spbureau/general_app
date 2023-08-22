@@ -18,7 +18,7 @@ void main() {
         primarySwatch: Colors.green,
         fontFamily: "Raleway",
       ),
-      //darkTheme: ThemeData.dark(),
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {

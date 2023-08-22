@@ -10,7 +10,11 @@ class Chats extends StatefulWidget {
 }
 
 class _ChatsState extends State<Chats> {
-  int chatIndex = 0;
+  @override
+  // int initState() {
+  //   return chatIndex;
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
